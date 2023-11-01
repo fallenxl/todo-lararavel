@@ -1,67 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Todo Lister App con Laravel y Vue.js
 
-## About Laravel
+[Live Demo](https://tu-aplicacion-de-demo-en-vivo.com)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este es un proyecto de una aplicación web de lista de tareas (ToDo List) desarrollada con Laravel y Vue.js. La aplicación utiliza una base de datos MySQL para almacenar las tareas. Puedes usar esta aplicación para crear, editar, eliminar y gestionar tus tareas diarias.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Asegúrate de tener instalados los siguientes requisitos antes de comenzar:
 
-## Learning Laravel
+- [PHP](https://www.php.net/) >= 8.2
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/) >= 18
+- [npm](https://www.npmjs.com/)
+- [Laravel](https://laravel.com/docs/8.x/installation) >= 10
+- [MySQL](https://dev.mysql.com/downloads/mysql/) (o cualquier otro sistema de gestión de bases de datos compatible)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# Documentacion
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Listar tareas
+**Endpoint:** /tasks
 
-## Laravel Sponsors
+**Descripción**: Este endpoint muestra una lista de todas las tareas ordenadas por la fecha de creación descendente.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Crear tarea
 
-### Premium Partners
+**Endpoint**: /task/store
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+**Descripción**: Este endpoint permite crear una nueva tarea en el almacenamiento.
 
-## Contributing
+**Parámetros de entrada:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+task[title] (cadena): Título de la tarea.
+task[description] (cadena): Descripción de la tarea.
+**Respuesta exitosa (código de estado 200):**
 
-## Code of Conduct
+La tarea recién creada.
+Respuesta de error (código de estado 403):
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Mensaje de error en caso de problemas.
 
-## Security Vulnerabilities
+## Actualizar tarea
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Endpoint:** /task/{id}
 
-## License
+**Descripción:** Este endpoint permite actualizar una tarea específica en el almacenamiento.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# challenge-php" 
+**Parámetros de entrada:**
+
+id (cadena): Identificador único de la tarea que se va a actualizar.
+task[completed] (booleano): Indica si la tarea está marcada como completada.
+**Respuesta exitosa (código de estado 200):**
+
+La tarea actualizada.
+Respuesta de error (código de estado 403 o 404):
+
+Mensaje de error en caso de problemas o si la tarea no se encuentra.
+
+## Eliminar todas las tareas
+
+**Endpoint:** /tasks/all
+
+**Descripción:** Este endpoint permite eliminar todas las tareas almacenadas.
+
+**Respuesta exitosa (código de estado 200):**
+
+Mensaje de éxito.
+Respuesta de error (código de estado 403):
+
+Mensaje de error en caso de problemas.
+
+## Eliminar tareas seleccionadas
+
+**Endpoint:** /tasks/selected
+
+Descripción: Este endpoint permite eliminar tareas seleccionadas del almacenamiento.
+
+**Parámetros de entrada:**
+
+selectedTasks (array): Lista de IDs de tareas seleccionadas.
+**Respuesta exitosa (código de estado 200):**
+
+Mensaje de éxito.
+Respuesta de error (código de estado 403):
+
+Mensaje de error en caso de problemas o si no se han seleccionado tareas.
+
+## Eliminar tarea específica
+
+**Endpoint:** /task/{id}
+
+**Descripción:** Este endpoint permite eliminar una tarea específica del almacenamiento.
+
+**Parámetros de entrada:**
+
+id (cadena): Identificador único de la tarea que se va a eliminar.
+**Respuesta exitosa (código de estado 200):**
+
+Mensaje de éxito.
+Respuesta de error (código de estado 403 o 404):
+
+Mensaje de error en caso de problemas o si la tarea no se encuentra.
+
+## Uso
+
+La aplicación de lista de tareas es simple y fácil de usar:
+
+- Puedes agregar nuevas tareas especificando un título y una descripción.
+- Marca las tareas como completadas o pendientes.
+- Edita las tareas existentes si es necesario.
+- Elimina una tarea a la vez o todas las tareas completadas a la vez.
+- Administra tus tareas de manera eficiente.
+
+¡Disfruta organizando tus tareas diarias con nuestra aplicación!
+
+## Contribución
+
+Si deseas contribuir a este proyecto, sigue estos pasos:
+
+1. Crea un fork del repositorio en GitHub.
+2. Clona tu fork en tu máquina local.
+3. Crea una nueva rama para tu contribución: `git checkout -b mi-contribucion`.
+4. Realiza tus cambios y commitea: `git commit -m 'Añadí una nueva característica'`.
+5. Sube los cambios a tu fork: `git push origin mi-contribucion`.
+6. Crea una solicitud de extracción (Pull Request) en el repositorio original.
+
+Desarrollado por Axl Santos.
+
