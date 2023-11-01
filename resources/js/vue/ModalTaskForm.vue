@@ -61,7 +61,7 @@ export default {
       const payload = {task: this.formData}
       await TaskServices.createTask(payload, (response) => {
         // Agregar la nueva tarea a la lista de tareas y cerrar el modal
-        this.tasks.push(response.data)
+        this.tasks.unshift(response.data)
         this.setOpenModal()
       })
     },

@@ -33,18 +33,8 @@ export const TaskServices = {
     updateTask: async (id, payload, cb) => {
         try {
             axios.put(Endpoints.TASK + id, payload).then(response => {
-                // Mostrar una notificación de éxito y llamar a la función de devolución
-                swal.fire({
-                    title: 'Tarea actualizada',
-                    text: 'La tarea se ha actualizado correctamente',
-                    icon: 'success',
-                    confirmButtonText: 'Aceptar',
-                    confirmButtonColor: '#3085d6',
-                    background: '#161b22',
-                    color: '#ffff',
-                }).then(() => {
-                    cb();
-                });
+            //     llamar a la función de devolución de llamada
+                cb();
             });
         } catch (error) {
             console.log(error);
