@@ -1,5 +1,5 @@
 // URL base de la API
-const BASE_URL = 'http://localhost:8000/api';
+const BASE_URL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:8000/api';
 
 // Definición de puntos finales de la API
 export const Endpoints = {

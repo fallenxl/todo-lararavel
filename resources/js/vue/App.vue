@@ -14,7 +14,6 @@
 <script>
 import Navbar from './components/Navbar.vue'
 import ListView from "./TaskList.vue";
-
 export default {
   components: {
     // Componentes utilizados en la vista principal
