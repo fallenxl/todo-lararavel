@@ -36,6 +36,8 @@
     </div>
     <!-- Lista de tareas -->
     <ul class="w-full flex flex-col gap-4">
+      <!-- Componente de esqueleto para cada tarea en la lista -->
+      <tasks-skeleton v-if="isLoading"/>
       <!-- Componente de tarea para cada tarea en la lista -->
       <task v-for="task in tasks" :key="task.id" :task="task" :isSelected="isTaskSelected"
             :handleSelected="handleSelectedTask" :toggleStatus="toggleTaskCompleted" :deleteTask="deleteTaskById"/>
@@ -47,11 +49,13 @@
 import Task from "./components/Task.vue";
 import ModalTaskForm from "./ModalTaskForm.vue";
 import {TaskServices} from "./services/taskServices.js";
+import TasksSkeleton from "./components/TasksSkeleton.vue";
 
 export default {
   components: {
     Task,
-    ModalTaskForm
+    ModalTaskForm,
+    TasksSkeleton
   },
   data() {
     return {
@@ -59,12 +63,15 @@ export default {
       tasks: [],
       isTasksEmpty: false,
       openModal: false,
-      selectedTasks: []
+      selectedTasks: [],
+      isLoading: false
     }
   },
   mounted() {
+    this.isLoading = true
     // Cargar tareas al montar el componente
     TaskServices.getAllTasks().then(response => {
+      this.isLoading = false
       this.tasks = response.data
     })
   },

@@ -1,15 +1,4 @@
 <template>
-  <!-- Lista de tareas -->
-  <div v-if="isTasksEmpty" class="w-full flex items-center justify-center">
-    <div class="w-full flex items-center justify-center flex-col gap-4">
-      <!-- Mensaje de "No hay tareas" -->
-      <h3 class="text-2xl font-bold">No hay tareas</h3>
-      <!-- Botón para crear una nueva tarea -->
-      <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-        Nueva tarea
-      </button>
-    </div>
-  </div>
   <!-- Elemento de lista de tarea -->
   <li :class="{'line-through opacity-40': task.completed, 'bg-gray-700 opacity-100': isSelected(task)}"
       class="bg-[#161b22] rounded-lg p-4 ">
