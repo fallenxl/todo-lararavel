@@ -1,9 +1,12 @@
+// URL base de la API
 const BASE_URL = 'http://localhost:8000/api';
 
+// Definición de puntos finales de la API
 export const Endpoints = {
-    ALL_TASKS: `${BASE_URL}/tasks`,
-    CREATE_TASK: `${BASE_URL}/task/store`,
-    TASK: `${BASE_URL}/task/`,
-    DELETE_ALL_TASKS: `${BASE_URL}/tasks/all`,
+    // Obtener todas las tareas
+    ALL_TASKS: `${BASE_URL}/tasks`, // Crear una nueva tarea
+    CREATE_TASK: `${BASE_URL}/task/store`, // Obtener una tarea por su ID (puede necesitar un ID adicional)
+    TASK: `${BASE_URL}/task/`, // Eliminar todas las tareas
+    DELETE_ALL_TASKS: `${BASE_URL}/tasks/all`, // Eliminar tareas seleccionadas (puede requerir un conjunto de IDs)
     DELETE_SELECTED_TASKS: `${BASE_URL}/tasks/selected`,
 }
