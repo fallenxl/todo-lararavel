@@ -63,7 +63,7 @@ class TaskController extends Controller
             }
 
             // Actualiza el estado de la tarea (completada o no) y la marca con la fecha actual si está completa.
-            $existingTask->completed = $request->task['completed'] ? true : false;
+            $existingTask->completed = $request->task['completed'];
             $existingTask->completed_at = $request->task['completed'] ? Carbon::now() : null;
             $existingTask->save(); // Guarda los cambios en la tarea.
 
